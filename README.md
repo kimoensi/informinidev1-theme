@@ -1,2 +1,2 @@
 # kamel-theme
-sample template of alaveteli
+sample Template
