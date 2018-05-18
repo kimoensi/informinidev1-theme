@@ -16,6 +16,3 @@ unless column_exists?(:users, :user_address)
   require File.expand_path migration_file_path, __FILE__
   KamelThemeAddUserAddressToUser.up
 end
-
-# Create any necessary global Censor rules
-require File.expand_path(File.dirname(__FILE__) + '/lib/censor_rules')
