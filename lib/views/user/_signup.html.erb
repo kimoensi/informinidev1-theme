@@ -3,9 +3,10 @@
     <%= foi_error_messages_for :user_signup %>
 
 <p>
-    <label class="form_label" for="status"> <%= _('Your status:') %></label>
-    <%= radio_button_tag 'user_signup[status]', 'PM' %> <%= _('Personne morale') %>  &nbsp;&nbsp;&nbsp;&nbsp;
-    <%= radio_button_tag 'user_signup[status]', 'PP' %> <%= _('Personne physique') %>
+    <label class="form_label" for="user_signup_user_status"> <%= _('Your status:') %></label>
+    <%= radio_button 'user_signup', 'user_status', 'PM' %> <%= _('Personne morale') %>  &nbsp;&nbsp;&nbsp;&nbsp;
+    <%= radio_button 'user_signup', 'user_status', 'PP' %> <%= _('Personne physique') %>
+    
 </p>
 
     <p>
