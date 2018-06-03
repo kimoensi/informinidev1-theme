@@ -45,4 +45,5 @@ Rails.configuration.to_prepare do
         user
     end
     
+  end    
 end
