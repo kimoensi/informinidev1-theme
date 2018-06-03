@@ -6,15 +6,26 @@
 # See http://stackoverflow.com/questions/7072758/plugin-not-reloading-in-development-mode
 #
 Rails.configuration.to_prepare do
-  # Example adding an instance variable to the frontpage controller
-  # GeneralController.class_eval do
-  #   def mycontroller
-  #     @say_something = "Greetings friend"
-  #   end
-  # end
-  # Example adding a new action to an existing controller
-  # HelpController.class_eval do
-  #   def help_out
-  #   end
-  # end
+
+
+
+    UserController.class_eval do
+
+      def build_general_law
+        @user_signup = User.new
+      end
+
+      private
+
+      def user_params(key = :user)
+          params[key].slice(:name,
+                            :email,
+                            :user_address,
+                            :user_status,  
+                            :password,
+                            :password_confirmation
+      end
+
+    end
+  
 end
