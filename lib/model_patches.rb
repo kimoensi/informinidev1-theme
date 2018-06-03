@@ -37,7 +37,7 @@ Rails.configuration.to_prepare do
                 :password => password,
                 :password_confirmation => password,
                 :user_address => 'Adresse de test',
-                :user_status => '1'
+                :user_status => 'PM'
             )
             user.save!
         end
