@@ -17,7 +17,7 @@ Rails.configuration.to_prepare do
                               :user_address,
                               :user_status,  
                               :password,
-                              :password_confirmation
+                              :password_confirmation)
         end
 
     end
