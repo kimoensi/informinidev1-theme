@@ -4,6 +4,12 @@
     <%= @display_user.get_about_me_for_html_display %>
     <% if @is_you %>
       (<%= link_to _("edit text about you"), edit_profile_about_me_path %>)
+    
+      <% if @display_user.user_address %>
+        <h4><%= _('Address') %>:<h4>
+        <pre><%= @display_user.user_address %></pre>
+      <% end %>
+          
     <% end %>
   </div>
 <% end %>
@@ -14,6 +20,8 @@
       <%= link_to _('Change profile photo'), set_profile_photo_path %> |
     <% end %>
     <%= link_to _('Change your password'), new_password_change_path %> |
+    <%= link_to _('Change your ID Number'), user_edit_identity_card_number_path %> |
+    <%= link_to _('Change your Address'), user_edit_user_address_path %> |
     <%= link_to _('Change your email'), signchangeemail_path %>
     <% if AlaveteliConfiguration.enable_two_factor_auth %>
     |
