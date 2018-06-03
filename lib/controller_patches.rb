@@ -11,9 +11,6 @@ Rails.configuration.to_prepare do
 
     UserController.class_eval do
 
-      def build_general_law
-        @user_signup = User.new
-      end
 
       private
 
