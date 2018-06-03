@@ -6,17 +6,43 @@
 # See http://stackoverflow.com/questions/7072758/plugin-not-reloading-in-development-mode
 #
 Rails.configuration.to_prepare do
+  
+  User.class_eval do
+    
+    validates :user_address,
+              :presence => {
+                :message => _('Please enter your address')
+              },
+              :format => {
+                :with => /\s/,
+                :message => _("Please enter your address - it is required by law when making a request"),
+                :allow_blank => true
+              }
+    
+    validates :name,
+              :format => {
+                :with => /\s/,
+                :message => _("Please enter your full name - it is required by law when making a request"),
+                :allow_blank => true
+              }
+    
+    # The "internal admin" is a special user for internal use.
+    def self.internal_admin_user
+        user = User.find_by_email(AlaveteliConfiguration::contact_email)
+        if user.nil?
+            password = PostRedirect.generate_random_token
+            user = User.new(
+                :name => 'Internal admin user',
+                :email => AlaveteliConfiguration.contact_email,
+                :password => password,
+                :password_confirmation => password,
+                :user_address => 'Adresse de test',
+                :user_status => '1'
+            )
+            user.save!
+        end
 
-  # Example of adding a default text to each message
-  # OutgoingMessage.class_eval do
-  #   # Add intro paragraph to new request template
-  #   def default_letter
-  #     # this line allows the default_letter text added by this
-  #     # method to be replaced by the value supplied by the API
-  #     # e.g. http://demo.alaveteli.org/new/tgq?default_letter=this+is+a+test
-  #     return @default_letter if @default_letter
-  #     return nil if self.message_type == 'followup'
-  #     "If you uncomment this line, this text will appear as default text in every message"
-  #   end
-  # end
+        user
+    end
+    
 end
